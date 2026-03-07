@@ -11,30 +11,33 @@ part of 'crypto_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$CryptoModel {
 
- String get name; double get price; double get change;
+ String get id; String get symbol; String get name; int get rank;@JsonKey(name: 'price_usd') String get priceUsd;@JsonKey(name: 'percent_change_24h') String get changePercent24Hr;
 /// Create a copy of CryptoModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $CryptoModelCopyWith<CryptoModel> get copyWith => _$CryptoModelCopyWithImpl<CryptoModel>(this as CryptoModel, _$identity);
 
+  /// Serializes this CryptoModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CryptoModel&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.change, change) || other.change == change));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CryptoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.symbol, symbol) || other.symbol == symbol)&&(identical(other.name, name) || other.name == name)&&(identical(other.rank, rank) || other.rank == rank)&&(identical(other.priceUsd, priceUsd) || other.priceUsd == priceUsd)&&(identical(other.changePercent24Hr, changePercent24Hr) || other.changePercent24Hr == changePercent24Hr));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,price,change);
+int get hashCode => Object.hash(runtimeType,id,symbol,name,rank,priceUsd,changePercent24Hr);
 
 @override
 String toString() {
-  return 'CryptoModel(name: $name, price: $price, change: $change)';
+  return 'CryptoModel(id: $id, symbol: $symbol, name: $name, rank: $rank, priceUsd: $priceUsd, changePercent24Hr: $changePercent24Hr)';
 }
 
 
@@ -45,7 +48,7 @@ abstract mixin class $CryptoModelCopyWith<$Res>  {
   factory $CryptoModelCopyWith(CryptoModel value, $Res Function(CryptoModel) _then) = _$CryptoModelCopyWithImpl;
 @useResult
 $Res call({
- String name, double price, double change
+ String id, String symbol, String name, int rank,@JsonKey(name: 'price_usd') String priceUsd,@JsonKey(name: 'percent_change_24h') String changePercent24Hr
 });
 
 
@@ -62,12 +65,15 @@ class _$CryptoModelCopyWithImpl<$Res>
 
 /// Create a copy of CryptoModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? price = null,Object? change = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? symbol = null,Object? name = null,Object? rank = null,Object? priceUsd = null,Object? changePercent24Hr = null,}) {
   return _then(_self.copyWith(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double,change: null == change ? _self.change : change // ignore: cast_nullable_to_non_nullable
-as double,
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,symbol: null == symbol ? _self.symbol : symbol // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,rank: null == rank ? _self.rank : rank // ignore: cast_nullable_to_non_nullable
+as int,priceUsd: null == priceUsd ? _self.priceUsd : priceUsd // ignore: cast_nullable_to_non_nullable
+as String,changePercent24Hr: null == changePercent24Hr ? _self.changePercent24Hr : changePercent24Hr // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -152,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  double price,  double change)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String symbol,  String name,  int rank, @JsonKey(name: 'price_usd')  String priceUsd, @JsonKey(name: 'percent_change_24h')  String changePercent24Hr)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CryptoModel() when $default != null:
-return $default(_that.name,_that.price,_that.change);case _:
+return $default(_that.id,_that.symbol,_that.name,_that.rank,_that.priceUsd,_that.changePercent24Hr);case _:
   return orElse();
 
 }
@@ -173,10 +179,10 @@ return $default(_that.name,_that.price,_that.change);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  double price,  double change)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String symbol,  String name,  int rank, @JsonKey(name: 'price_usd')  String priceUsd, @JsonKey(name: 'percent_change_24h')  String changePercent24Hr)  $default,) {final _that = this;
 switch (_that) {
 case _CryptoModel():
-return $default(_that.name,_that.price,_that.change);case _:
+return $default(_that.id,_that.symbol,_that.name,_that.rank,_that.priceUsd,_that.changePercent24Hr);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +199,10 @@ return $default(_that.name,_that.price,_that.change);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  double price,  double change)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String symbol,  String name,  int rank, @JsonKey(name: 'price_usd')  String priceUsd, @JsonKey(name: 'percent_change_24h')  String changePercent24Hr)?  $default,) {final _that = this;
 switch (_that) {
 case _CryptoModel() when $default != null:
-return $default(_that.name,_that.price,_that.change);case _:
+return $default(_that.id,_that.symbol,_that.name,_that.rank,_that.priceUsd,_that.changePercent24Hr);case _:
   return null;
 
 }
@@ -205,15 +211,18 @@ return $default(_that.name,_that.price,_that.change);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _CryptoModel implements CryptoModel {
-  const _CryptoModel({required this.name, required this.price, required this.change});
-  
+  const _CryptoModel({required this.id, required this.symbol, required this.name, required this.rank, @JsonKey(name: 'price_usd') required this.priceUsd, @JsonKey(name: 'percent_change_24h') required this.changePercent24Hr});
+  factory _CryptoModel.fromJson(Map<String, dynamic> json) => _$CryptoModelFromJson(json);
 
+@override final  String id;
+@override final  String symbol;
 @override final  String name;
-@override final  double price;
-@override final  double change;
+@override final  int rank;
+@override@JsonKey(name: 'price_usd') final  String priceUsd;
+@override@JsonKey(name: 'percent_change_24h') final  String changePercent24Hr;
 
 /// Create a copy of CryptoModel
 /// with the given fields replaced by the non-null parameter values.
@@ -221,20 +230,23 @@ class _CryptoModel implements CryptoModel {
 @pragma('vm:prefer-inline')
 _$CryptoModelCopyWith<_CryptoModel> get copyWith => __$CryptoModelCopyWithImpl<_CryptoModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$CryptoModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CryptoModel&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.change, change) || other.change == change));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CryptoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.symbol, symbol) || other.symbol == symbol)&&(identical(other.name, name) || other.name == name)&&(identical(other.rank, rank) || other.rank == rank)&&(identical(other.priceUsd, priceUsd) || other.priceUsd == priceUsd)&&(identical(other.changePercent24Hr, changePercent24Hr) || other.changePercent24Hr == changePercent24Hr));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,price,change);
+int get hashCode => Object.hash(runtimeType,id,symbol,name,rank,priceUsd,changePercent24Hr);
 
 @override
 String toString() {
-  return 'CryptoModel(name: $name, price: $price, change: $change)';
+  return 'CryptoModel(id: $id, symbol: $symbol, name: $name, rank: $rank, priceUsd: $priceUsd, changePercent24Hr: $changePercent24Hr)';
 }
 
 
@@ -245,7 +257,7 @@ abstract mixin class _$CryptoModelCopyWith<$Res> implements $CryptoModelCopyWith
   factory _$CryptoModelCopyWith(_CryptoModel value, $Res Function(_CryptoModel) _then) = __$CryptoModelCopyWithImpl;
 @override @useResult
 $Res call({
- String name, double price, double change
+ String id, String symbol, String name, int rank,@JsonKey(name: 'price_usd') String priceUsd,@JsonKey(name: 'percent_change_24h') String changePercent24Hr
 });
 
 
@@ -262,12 +274,15 @@ class __$CryptoModelCopyWithImpl<$Res>
 
 /// Create a copy of CryptoModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? price = null,Object? change = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? symbol = null,Object? name = null,Object? rank = null,Object? priceUsd = null,Object? changePercent24Hr = null,}) {
   return _then(_CryptoModel(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double,change: null == change ? _self.change : change // ignore: cast_nullable_to_non_nullable
-as double,
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,symbol: null == symbol ? _self.symbol : symbol // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,rank: null == rank ? _self.rank : rank // ignore: cast_nullable_to_non_nullable
+as int,priceUsd: null == priceUsd ? _self.priceUsd : priceUsd // ignore: cast_nullable_to_non_nullable
+as String,changePercent24Hr: null == changePercent24Hr ? _self.changePercent24Hr : changePercent24Hr // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
